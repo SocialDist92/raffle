@@ -1,0 +1,14 @@
+<section fxLayoutAlign="center center" fxLayout="column">
+  <ng-container *ngIf="!activeSession">
+    <app-login></app-login>
+  </ng-container>
+  <ng-container *ngIf="activeSession">
+    <app-to-add></app-to-add>
+    <app-participants></app-participants>
+  </ng-container>
+
+</section>
+
+
+
+

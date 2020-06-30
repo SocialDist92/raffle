@@ -1,0 +1,7 @@
+<mat-toolbar>
+  <span>Rifa Guitarra Fender 2020</span>
+  <span class="spacer"></span>
+  <button *ngIf="sessionActive" (click)="logout()" mat-icon-button aria-label="logout">
+    <mat-icon>exit_to_app</mat-icon>
+  </button>
+</mat-toolbar>

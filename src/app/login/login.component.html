@@ -1,0 +1,26 @@
+<section class="login-component" fxLayoutAlign="center center">
+  <mat-card class="login-component__card">
+    <mat-card-title>Login</mat-card-title>
+    <form [formGroup]="loginForm" autocomplete="off" novalidate
+          (ngSubmit)="login()"
+    >
+      <mat-card-content class="login-component__form-container" fxLayout="column">
+        <mat-form-field>
+          <input matInput type="text" placeholder="Usuario" formControlName="user">
+          <mat-error *ngIf="hasError('user', 'required')">Usuario requerido</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput type="password" placeholder="Contraseña" formControlName="password">
+          <mat-error *ngIf="hasError('password', 'required')">Contraseña requerida</mat-error>
+        </mat-form-field>
+
+      </mat-card-content>
+      <mat-error *ngIf="loginError">Credenciales incorrectas</mat-error>
+      <mat-card-actions align="center">
+        <button mat-raised-button color="primary" [disabled]="!loginForm.valid">Entrar</button>
+      </mat-card-actions>
+
+    </form>
+
+  </mat-card>
+</section>

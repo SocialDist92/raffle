@@ -1,0 +1,64 @@
+<section class="add-participant-component" fxLayoutAlign="center center">
+  <ng-container *ngIf="!addSuccess">
+    <mat-card class="add-participant-component__card">
+      <mat-card-title>Registro de participante</mat-card-title>
+      <form [formGroup]="participantForm" autocomplete="off" novalidate
+            (ngSubmit)="createParticipant()"
+      >
+        <mat-card-content class="add-participant-component__form-container" fxLayout="column">
+          <mat-form-field>
+            <input matInput type="text" placeholder="Nombre(s)" formControlName="name">
+            <mat-error *ngIf="hasError('name', 'required')">Nombre requerido</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type="text" placeholder="Apellidos" formControlName="lastName">
+            <mat-error *ngIf="hasError('lastName', 'required')">Apellido requerido</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type="text" placeholder="Teléfono (10 dígitos)" formControlName="phone">
+            <mat-error *ngIf="hasError('phone', 'required')">Teléfono requerido</mat-error>
+            <mat-error *ngIf="hasError('phone', 'pattern')">Ingrese un teléfono válido de 10 dígitos</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Selecciona tu número</mat-label>
+            <mat-select formControlName="number">
+              <mat-option *ngFor="let number of numbers" [value]="number">
+                {{number}}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="hasError('number', 'required')">Selecciona un número</mat-error>
+          </mat-form-field>
+        </mat-card-content>
+        <mat-card-actions align="center">
+          <button mat-raised-button color="primary" [disabled]="!participantForm.valid">Registrar</button>
+        </mat-card-actions>
+
+      </form>
+
+    </mat-card>
+  </ng-container>
+  <ng-container *ngIf="addSuccess">
+    <mat-card class="add-participant-component__card">
+      <mat-card-content>
+        <p>
+          <strong>Total a pagar: $100.00</strong><br>
+          {{participantForm.value.name.toUpperCase()}} Estás a un paso de estar participando con el número
+          {{participantForm.value.number}}. Solo falta pagar tu boleto, tienes dos opciones:
+        </p>
+
+        <ul>
+          <li><p>Acude a Forte academia de música a realizar el pago. <a target="_blank" href="https://goo.gl/maps/GpTjLfkKm6KCFHgbA">Cómo
+            llegar.</a></p></li>
+          <li><p>Deposita el total a la siguiente tarjeta Banamex: 5204165367797291 a nombre de Luis Armando Rios
+            Romano, luego envía foto del comprobante, número de boleto y tu nombre completo por medio de WhatsApp al
+            siguiente número: 6141001379</p></li>
+        </ul>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" (click)="newRegister()">Registrar otro boleto</button>
+      </mat-card-actions>
+
+
+    </mat-card>
+  </ng-container>
+</section>
